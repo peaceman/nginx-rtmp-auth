@@ -1,0 +1,4 @@
+<?php
+return [
+    'streamKey' => ['secret' => 'foothebar'],
+];

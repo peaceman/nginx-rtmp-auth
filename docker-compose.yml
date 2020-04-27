@@ -1,0 +1,14 @@
+version: "2.4"
+services:
+  nginx-rtmp:
+    image: alqutami/rtmp-hls:latest
+    ports:
+      - "2305:2305"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+  rtmp-auth:
+    image: php:7.4-cli
+    volumes:
+      - ./rtmp-auth:/app
+      - ./auth-config.php:/app/auth-config.php
+    command: php -S 0.0.0.0:80 /app/auth.php
