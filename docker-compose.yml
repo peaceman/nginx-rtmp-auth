@@ -14,6 +14,5 @@ services:
     image: php:7.4-cli
     <<: *restart-policy
     volumes:
-      - ./rtmp-auth/auth.php:/app/auth.php
-      - ./auth-config.php:/app/auth-config.php
+      - ./rtmp-auth:/app
     command: php -S 0.0.0.0:80 /app/auth.php
