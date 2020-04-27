@@ -15,5 +15,5 @@ if (!$queryString) abort();
 
 parse_str($queryString, $queryParams);
 
-if ($streamAuth['secret'] ?? '' !== $queryParams['secret'] ?? '')
+if (($streamAuth['secret'] ?? '') !== ($queryParams['secret'] ?? ''))
     abort();

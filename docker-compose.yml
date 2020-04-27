@@ -1,14 +1,19 @@
+x-restart-policy: &restart-policy
+  restart: unless-stopped
+
 version: "2.4"
 services:
   nginx-rtmp:
     image: alqutami/rtmp-hls:latest
+    <<: *restart-policy
     ports:
       - "2305:2305"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
   rtmp-auth:
     image: php:7.4-cli
+    <<: *restart-policy
     volumes:
-      - ./rtmp-auth:/app
+      - ./rtmp-auth/auth.php:/app/auth.php
       - ./auth-config.php:/app/auth-config.php
     command: php -S 0.0.0.0:80 /app/auth.php
